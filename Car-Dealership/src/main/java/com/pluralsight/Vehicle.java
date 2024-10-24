@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Vehicle {
-    int vin;
-    int year;
-    String make;
-    String Model;
-    String vehicleType;
-    String color;
-    int odometer;
-    double price;
+    private int vin;
+    private int year;
+    private String make;
+    private String Model;
+    private String vehicleType;
+    private String color;
+    private int odometer;
+    private double price;
 
 
     public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
@@ -91,6 +91,11 @@ public class Vehicle {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String toString(){
+        return String.format("VIN: %d, Year: %d, Make: %s, Model: %s, Type: %s, Color: %s, Odometer: %d, Price: %f",
+                vin, year, make, Model, vehicleType, color, odometer, price);
     }
 
 

@@ -7,9 +7,10 @@ import java.io.IOException;
 public class DealershipFileManager {
 
     // read each part of each vehicle into memory
-    public void createInventory() throws IOException {
+    public static void createInventory() throws IOException {
         FileReader fileReader = new FileReader("inventory.csv");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
+        bufferedReader.readLine();
         String input;
         while ((input = bufferedReader.readLine()) != null) {
             String[] part = input.split("\\|");
@@ -25,4 +26,7 @@ public class DealershipFileManager {
             Dealership.vehicleInventory.add(vehicle);
         }
     }
+
+
+
 }

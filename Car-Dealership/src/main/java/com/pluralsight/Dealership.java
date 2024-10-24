@@ -16,8 +16,8 @@ public class Dealership {
         String userInput = scanner.nextLine();
 
         for (Vehicle v : vehicleInventory){
-            if (userInput.equalsIgnoreCase(v.make)){
-                System.out.println(v);
+            if (v.getMake().equalsIgnoreCase(userInput)){
+                System.out.println(v.toString());
             }
         }
 
