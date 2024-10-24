@@ -6,6 +6,6 @@ public class Prompts {
         System.out.println(p);
     }
 
-    public static String makeSearch = "What is the make of the vehicle would you like to search for?";
+    public static String makeSearch = "\nWhat is the make of the vehicle would you like to search for?";
 
 }
