@@ -46,36 +46,120 @@ public class UserInterface {
         displayMenu();
         int userInput = scanner.nextInt();
         scanner.nextLine();
-        switch (userInput) {
-            case 1:
-                searchMenu(scanner);
-                break;
-            case 2:
+        boolean appRunning = true;
+        while (appRunning) {
+            switch (userInput) {
+                case 1:
+                    searchMenu(scanner);
+                    break;
+                case 2:
+                    dealership.getAllVehicles();
+                    break;
+                case 3:
+                    addCar(scanner);
+                    break;
 
-                break;
-            case 3:
-                addCar(scanner);
-                break;
+                case 4:
+                    //removeCar(scanner);
+                    break;
 
-            case 4:
-                removeCar(scanner);
-                break;
+                case 5:
+                    return;
 
-            case 5:
-                return;
-
-            default:
-                System.out.println("\nSORRY WRONG INPUT TRY AGAIN!");
+                default:
+                    System.out.println("\nSORRY WRONG INPUT TRY AGAIN!");
+            }
         }
 
     }
 
-    public void searchByMake() {
+    public void searchMenu(){
         Scanner scanner = new Scanner(System.in);
-
-        String userInput = scanner.nextLine();
+        init();
+        searchMenu();
+        int userInput = scanner.nextInt();
+        scanner.nextLine();
+        switch (userInput){
+            case 1:
+                searchByMake(scanner);
+                break;
+            case 2:
+                searchByModel(scanner);
+                break;
+            case 3:
+                searchByColor(scanner);
+                break;
+            case 4:
+                searchByVin(scanner);
+                break;
+            case 5:
+                searchByVehicleType(scanner);
+                break;
+            case 6:
+                searchByMileage(scanner);
+                break;
+            case 7:
+                searchByPrice(scanner);
+                break;
+            case 8:
+                searchByYear(scanner);
+                break;
+            default:
+                System.out.println("SORRY INVALID INPUT TRY AGAIN!");
+                return;
+        }
     }
 
+    // method to search for car by make
+    public void searchByMake(Scanner scanner) {
+        System.out.println("Please enter the make of the car you would like to search for: ");
+        String make = scanner.nextLine();
+        dealership.getVehicleByMake(make);
+    }
+
+    // method to search for car by model
+    public void searchByModel(Scanner scanner){
+        System.out.println("Please enter the model of the car you would like to search for: ");
+        String model = scanner.nextLine();
+        dealership.getVehicleByModel(model);
+    }
+
+    public void searchByColor(Scanner scanner){
+        System.out.println("Enter the color of the car that you would like to search for: ");
+        String color = scanner.nextLine();
+        dealership.getVehicleColor(color);
+    }
+
+    public void searchByVin(Scanner scanner){
+        System.out.println("Enter the vin of the vehicle you would like to search for: ");
+        int vin = scanner.nextInt();
+        dealership.getVehicleVin(vin);
+    }
+
+    public void searchByVehicleType(Scanner scanner){
+        System.out.println("Enter the type of vehicle that you would like to search for: ");
+        String type = scanner.nextLine();
+        dealership.getVehicleType(type);
+    }
+
+    public void searchByMileage(Scanner scanner){
+        System.out.println("Enter Maximum mileage: ");
+        int miles = scanner.nextInt();
+        scanner.nextLine();
+        dealership.getVehicleMileage(miles);
+    }
+
+    public void searchByPrice(Scanner scanner){
+        System.out.println("What is your maximum price: ");
+        double price = scanner.nextDouble();
+        dealership.getVehiclePrice(price);
+    }
+
+    public void searchByYear(Scanner scanner){
+        System.out.println("What is the lowest year vehicle that you would like: ");
+        int year = scanner.nextInt();
+        dealership.getVehicleYear(year);
+    }
 
     // method to add a new car
     private void addCar(Scanner scanner) {
@@ -103,16 +187,17 @@ public class UserInterface {
         dealership.addVehicle(vehicle);
     }
 
-
     // method to remove car
-    private void removeCar(Scanner scanner) {
-        System.out.println("Enter the vin of the vehicle you would like to remove: ");
-        int vin = scanner.nextInt();
-        scanner.nextLine();
-        for (Vehicle v : dealership.getAllVehicles()) {
-            dealership.removeVehicle(v);
-        }
-    }
+//    private void removeCar(Scanner scanner) {
+//        System.out.println("Enter the vin of the vehicle you would like to remove: ");
+//        int vin = scanner.nextInt();
+//        scanner.nextLine();
+//        for (Vehicle v: dealership.getAllVehicles()) {
+//            if (v.getVin() == vin){
+//                dealership.removeVehicle(v);
+//            }
+//        }
+//    }
 
 
     public String toString() {

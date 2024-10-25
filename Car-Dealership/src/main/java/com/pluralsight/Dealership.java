@@ -1,7 +1,6 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Dealership {
     private String businessName;
@@ -17,83 +16,123 @@ public class Dealership {
     }
 
     // method to list all vehicles
-    public ArrayList<Vehicle> getAllVehicles(){
-        return dealershipInventory;
+    public void getAllVehicles() {
+        for (Vehicle v : dealershipInventory) {
+            System.out.println(v);
+        }
     }
 
-    public void addVehicle(Vehicle vehicle){
+    public void addVehicle(Vehicle vehicle) {
         dealershipInventory.add(vehicle);
     }
 
-    public void removeVehicle(Vehicle vehicle){
+    public void removeVehicle(Vehicle vehicle) {
         dealershipInventory.remove(vehicle);
     }
 
 
     // method to make a feature to search by the make
-    public void getVehicleByMake() {
-        Scanner scanner = new Scanner(System.in);
-        Prompts.printPrompt(Prompts.makeSearch);
-        String userInput = scanner.nextLine();
-
+    public void getVehicleByMake(String make) {
         for (Vehicle v : dealershipInventory) {
-            if (v.getMake().equalsIgnoreCase(userInput)) {
+            if (v.getMake().equalsIgnoreCase(make)) {
                 System.out.println(v.toString());
             }
         }
     }
 
-    // method to search by VIN
-    public Vehicle getVehicleByVin(int vin) {
-        int input = scanner.nextInt();
-        ArrayList<Vehicle> vehiclesByVin = new ArrayList();
-
-        for (Vehicle v : vehicleInventory) {
-            if (v.getVin() == vin) {
-                vehiclesByVin.add(v);
-                return v;
+    // method to search by model
+    public void getVehicleByModel(String model) {
+        for (Vehicle v : dealershipInventory) {
+            if (v.getMake().equalsIgnoreCase(model)) {
+                System.out.println(v.toString());
             }
         }
-    return null;
     }
+
+    //method to search by color
+    public void getVehicleColor(String color) {
+        for (Vehicle v : dealershipInventory) {
+            if (v.getColor().equalsIgnoreCase(color)) {
+                System.out.println(v.toString());
+            }
+        }
+    }
+
+    //method to search by VIN
+    public void getVehicleVin(int vin) {
+        for (Vehicle v : dealershipInventory) {
+            if (v.getVin() == vin) {
+                System.out.println(v.toString());
+            }
+        }
+    }
+
+    // method to search by vehicle type
+    public void getVehicleType(String type) {
+        for (Vehicle v : dealershipInventory) {
+            if (v.getVehicleType().equalsIgnoreCase(type)) {
+                System.out.println(v.toString());
+            }
+        }
+    }
+
+    //method to search by price
+    public void getVehiclePrice(double price) {
+        for (Vehicle v : dealershipInventory) {
+            if (v.getPrice() <= price) {
+                System.out.println(v.toString());
+            }
+        }// method to search by mileage
+    }
+
+    // method to search by mileage
+    public void getVehicleMileage(int miles){
+        for (Vehicle v : dealershipInventory) {
+            if (v.getOdometer() <= miles) {
+                System.out.println(v.toString());
+            }
+        }
+    }
+
+    // method to search by year
+    public void getVehicleYear(int year) {
+        for (Vehicle v : dealershipInventory) {
+            if (v.getYear() == year) {
+                System.out.println(v.toString());
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
 
 
 
     // method to search by year
-    public static void getVehicleYear() {
-        Scanner scanner = new Scanner(System.in);
-        Prompts.printPrompt(Prompts.yearSearch);
-        int input = scanner.nextInt();
-
-        for (Vehicle v : vehicleInventory) {
-            if (v.getYear() == input) {
-                System.out.println(v.toString());
-            }
-        }
-    }
-
-
-    // method to search by color
-    public static void getVehicleColor() {
-        Scanner scanner = new Scanner(System.in);
-        Prompts.printPrompt(Prompts.yearSearch);
-        String input = scanner.nextLine();
-
-        for (Vehicle v : vehicleInventory) {
-            if (v.getColor() == input) {
-                System.out.println(v.toString());
-            }
-        }
-    }
-
-    // method to search by mileage
-    public static void getVehicleMileage(){}
-
-    // method to search by vehicle type
-    public static void getVehicleType(){}
-
-    // method to search by price
-    public static void getVehiclePrice(){}
+//    public static void getVehicleYear() {
+//        Scanner scanner = new Scanner(System.in);
+//        Prompts.printPrompt(Prompts.yearSearch);
+//        int input = scanner.nextInt();
+//
+//        for (Vehicle v : vehicleInventory) {
+//            if (v.getYear() == input) {
+//                System.out.println(v.toString());
+//            }
+//        }
+//    }
 
 
-}
+
+
+
