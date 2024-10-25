@@ -6,27 +6,38 @@ import java.io.IOException;
 
 public class DealershipFileManager {
 
-    // read each part of each vehicle into memory
-    public static void createInventory() throws IOException {
-        FileReader fileReader = new FileReader("inventory.csv");
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        bufferedReader.readLine();
-        String input;
-        while ((input = bufferedReader.readLine()) != null) {
+    // method to create the header
+    public Dealership getDealerShip(String file) {
+        try {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            // parsed the first line of the csv file that contains the header
+            String input = bufferedReader.readLine();
+
             String[] part = input.split("\\|");
-            int vin = Integer.parseInt(part[0]);
-            int year = Integer.parseInt(part[1]);
-            String make = part[2];
-            String model = part[3];
-            String vehicleType = part[4];
-            String color = part[5];
-            int odometer = Integer.parseInt(part[6]);
-            double price = Double.parseDouble(part[7]);
-            Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
-            Dealership.vehicleInventory.add(vehicle);
+            String businessName = part[0];
+            String address = part[1];
+            String phoneNumber = part[2];
+            Dealership dealership = new Dealership(businessName, address, phoneNumber);
+            while ((input = bufferedReader.readLine()) != null) {
+                String[] vPart = input.split("\\|");
+                int vin = Integer.parseInt(vPart[0]);
+                int year = Integer.parseInt(vPart[1]);
+                String make = vPart[2];
+                String model = vPart[3];
+                String vehicleType = vPart[4];
+                String color = vPart[5];
+                int odometer = Integer.parseInt(vPart[6]);
+                double price = Double.parseDouble(vPart[7]);
+                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                Dealership.vehicleInventory.add(vehicle);
+            }
+            return dealership;
+        } catch (Exception e) {
+            System.out.println("INVALID INPUT");
         }
+        return null;
     }
-
-
-
+    public void saveDealership(Dealership dealership){}
 }
