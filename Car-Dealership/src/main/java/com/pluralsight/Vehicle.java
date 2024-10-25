@@ -94,9 +94,15 @@ public class Vehicle {
     }
 
     public String toString(){
-        return String.format("VIN: %d, Year: %d, Make: %s, Model: %s, Type: %s, Color: %s, Odometer: %d, Price: %f",
+        return String.format("VIN: %-10d | Year: %-5d | Make: %-8s | Model: %-10s | Type: %-8s | Color: %-8s | Odometer: %-10d | Price: %.2f",
                 vin, year, make, Model, vehicleType, color, odometer, price);
     }
+
+    public String toStringForVehicleFile(){
+        return String.format("%d|%d|%s|%s|%s|%s|%d|%f",
+                vin, year, make, Model, vehicleType, color, odometer, price);
+    }
+
 
 
 }

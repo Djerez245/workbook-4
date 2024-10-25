@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class Dealership {
@@ -16,10 +18,12 @@ public class Dealership {
     }
 
     // method to list all vehicles
-    public void getAllVehicles() {
+    public ArrayList<Vehicle> getAllVehicles() {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
-            System.out.println(v);
+            results.add(v);
         }
+        return results;
     }
 
     public void addVehicle(Vehicle vehicle) {
@@ -32,107 +36,95 @@ public class Dealership {
 
 
     // method to make a feature to search by the make
-    public void getVehicleByMake(String make) {
+    public ArrayList<Vehicle> getVehicleByMake(String make) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
             if (v.getMake().equalsIgnoreCase(make)) {
-                System.out.println(v.toString());
+                results.add(v);
             }
         }
+        return results;
     }
 
     // method to search by model
-    public void getVehicleByModel(String model) {
+    public ArrayList<Vehicle> getVehicleByModel(String model) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
-            if (v.getMake().equalsIgnoreCase(model)) {
-                System.out.println(v.toString());
+            if (v.getModel().equalsIgnoreCase(model)) {
+                results.add(v);
             }
         }
+        return results;
     }
 
     //method to search by color
-    public void getVehicleColor(String color) {
+    public ArrayList<Vehicle> getVehicleColor(String color) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
             if (v.getColor().equalsIgnoreCase(color)) {
-                System.out.println(v.toString());
+                results.add(v);
             }
         }
+        return results;
     }
 
     //method to search by VIN
-    public void getVehicleVin(int vin) {
+    public ArrayList<Vehicle> getVehicleVin(int vin) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
             if (v.getVin() == vin) {
-                System.out.println(v.toString());
+                results.add(v);
             }
         }
+        return results;
     }
 
     // method to search by vehicle type
-    public void getVehicleType(String type) {
+    public ArrayList<Vehicle> getVehicleType(String type) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
             if (v.getVehicleType().equalsIgnoreCase(type)) {
-                System.out.println(v.toString());
+                results.add(v);
             }
         }
+        return results;
     }
 
     //method to search by price
-    public void getVehiclePrice(double price) {
+    public ArrayList<Vehicle> getVehiclePrice(double price) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
             if (v.getPrice() <= price) {
-                System.out.println(v.toString());
+                results.add(v);
             }
-        }// method to search by mileage
+        }
+        return results;
     }
 
     // method to search by mileage
-    public void getVehicleMileage(int miles){
+    public ArrayList<Vehicle> getVehicleMileage(int miles) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
             if (v.getOdometer() <= miles) {
-                System.out.println(v.toString());
+                results.add(v);
             }
         }
+        return results;
     }
 
     // method to search by year
-    public void getVehicleYear(int year) {
+    public ArrayList<Vehicle> getVehicleYear(int year) {
+        ArrayList<Vehicle> results = new ArrayList<Vehicle>();
         for (Vehicle v : dealershipInventory) {
             if (v.getYear() == year) {
-                System.out.println(v.toString());
+                results.add(v);
             }
         }
+        return results;
     }
 
-
-
-
-
-
-
+    public String toStringForFile() {
+        return String.format("%s | %s | %.2s", businessName, address, phoneNumber);
+    }
 
 }
-
-
-
-
-
-
-
-
-    // method to search by year
-//    public static void getVehicleYear() {
-//        Scanner scanner = new Scanner(System.in);
-//        Prompts.printPrompt(Prompts.yearSearch);
-//        int input = scanner.nextInt();
-//
-//        for (Vehicle v : vehicleInventory) {
-//            if (v.getYear() == input) {
-//                System.out.println(v.toString());
-//            }
-//        }
-//    }
-
-
-
-
-

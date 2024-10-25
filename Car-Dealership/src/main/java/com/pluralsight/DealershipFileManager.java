@@ -1,13 +1,13 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
 public class DealershipFileManager {
 
     // method to create the header
     public Dealership getDealerShip(String file) {
+        Dealership dealership = null;
         try {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -19,7 +19,8 @@ public class DealershipFileManager {
             String businessName = part[0];
             String address = part[1];
             String phoneNumber = part[2];
-            Dealership dealership = new Dealership(businessName, address, phoneNumber);
+            dealership = new Dealership(businessName, address, phoneNumber);
+
             while ((input = bufferedReader.readLine()) != null) {
                 String[] vPart = input.split("\\|");
                 int vin = Integer.parseInt(vPart[0]);
@@ -32,12 +33,34 @@ public class DealershipFileManager {
                 double price = Double.parseDouble(vPart[7]);
                 Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
                 dealership.addVehicle(vehicle);
+
             }
-            return dealership;
         } catch (Exception e) {
             System.out.println("INVALID INPUT");
         }
-        return null;
+        return dealership;
     }
+
+    FileWriter fileWriter;
+
+    {
+        try {
+            fileWriter = new FileWriter("inventory.csv", true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+    public void writeVehicleFile(Vehicle v) throws IOException {
+        bufferedWriter.newLine();
+        bufferedWriter.write(v.toStringForVehicleFile());
+        bufferedWriter.close();
+    }
+
+
     public void saveDealership(Dealership dealership){}
+
+
 }
