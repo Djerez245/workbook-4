@@ -74,6 +74,7 @@ public class UserInterface {
             displaySearchMenu();
             int userInput = scanner.nextInt();
             scanner.nextLine();
+            // uses a lambda switch statement for cleaner code
             switch (userInput) {
                 case 1 -> searchByMake(scanner);
                 case 2 -> searchByModel(scanner);
@@ -116,19 +117,19 @@ public class UserInterface {
     public void searchByColor(Scanner scanner) {
         System.out.println("\nEnter the color of the car that you would like to search for: \n");
         String color = scanner.nextLine();
-        printVehicleList(dealership.getVehicleColor(color));
+        printVehicleList(dealership.getVehicleByColor(color));
     }
 
     public void searchByVin(Scanner scanner) {
         System.out.println("\nEnter the vin of the vehicle you would like to search for: \n");
         int vin = scanner.nextInt();
-        printVehicleList(dealership.getVehicleVin(vin));
+        printVehicleList(dealership.getVehicleByVin(vin));
     }
 
     public void searchByVehicleType(Scanner scanner) {
         System.out.println("\nEnter the type of vehicle that you would like to search for: \n");
         String type = scanner.nextLine();
-        printVehicleList(dealership.getVehicleType(type));
+        printVehicleList(dealership.getVehiclesByType(type));
     }
 
     public void searchByMileage(Scanner scanner) {
@@ -147,7 +148,7 @@ public class UserInterface {
     public void searchByYear(Scanner scanner) {
         System.out.println("\nWhat is the lowest year vehicle that you would like: \n");
         int year = scanner.nextInt();
-        printVehicleList(dealership.getVehicleYear(year));
+        printVehicleList(dealership.getVehicleByYear(year));
     }
 
     // method to add a new car

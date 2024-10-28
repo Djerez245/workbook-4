@@ -17,13 +17,16 @@ public class Dealership {
 
     // method to list all vehicles
     public ArrayList<Vehicle> getAllVehicles() {
-        return new ArrayList<>(dealershipInventory);
+        return new ArrayList<>(dealershipInventory); // creates a new array list the displays the full list of vehicles
+                                                     // in the dealerships inventory
     }
 
+    // when this method is called it adds the vehicle to inventory
     public void addVehicle(Vehicle vehicle) {
         dealershipInventory.add(vehicle);
     }
 
+    // when this method is called it removes the vehicle from inventory
     public void removeVehicle(Vehicle vehicle) {
         dealershipInventory.remove(vehicle);
     }
@@ -57,7 +60,7 @@ public class Dealership {
     }
 
     //method to search by color
-    public ArrayList<Vehicle> getVehicleColor(String color) {
+    public ArrayList<Vehicle> getVehicleByColor(String color) {
         ArrayList<Vehicle> results = new ArrayList<>();
         boolean inputMatches = false;
         for (Vehicle v : dealershipInventory) {
@@ -71,7 +74,7 @@ public class Dealership {
     }
 
     //method to search by VIN
-    public ArrayList<Vehicle> getVehicleVin(int vin) {
+    public ArrayList<Vehicle> getVehicleByVin(int vin) {
         ArrayList<Vehicle> results = new ArrayList<>();
         boolean inputMatches = false;
         for (Vehicle v : dealershipInventory) {
@@ -85,7 +88,7 @@ public class Dealership {
     }
 
     // method to search by vehicle type
-    public ArrayList<Vehicle> getVehicleType(String type) {
+    public ArrayList<Vehicle> getVehiclesByType(String type) {
         ArrayList<Vehicle> results = new ArrayList<>();
         boolean inputMatches = false;
         for (Vehicle v : dealershipInventory) {
@@ -127,7 +130,7 @@ public class Dealership {
     }
 
     // method to search by year
-    public ArrayList<Vehicle> getVehicleYear(int year) {
+    public ArrayList<Vehicle> getVehicleByYear(int year) {
         ArrayList<Vehicle> results = new ArrayList<>();
         boolean inputMatches = false;
         for (Vehicle v : dealershipInventory) {
@@ -141,10 +144,12 @@ public class Dealership {
     }
 
 
+    // to string for writing dealership to a file
     public String toStringForBusinessFile() {
         return String.format("%s|%s|%.2s", businessName, address, phoneNumber);
     }
 
+    // a method for when a user enters an invalid input
     private void inputMismatch(boolean inputMatches){
         if (!inputMatches){
             System.out.println("\nSORRY VEHICLE CAN NOT BE FOUND");

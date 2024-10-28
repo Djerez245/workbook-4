@@ -31,6 +31,7 @@ public class DealershipFileManager {
         return dealership;
     }
 
+    // method to create the vehicle from a string in the csv file
     private static Vehicle createVehicleFromString(String input) {
         String[] vPart = input.split("\\|");
         int vin = Integer.parseInt(vPart[0]);
@@ -45,6 +46,7 @@ public class DealershipFileManager {
         return vehicle;
     }
 
+    // method to save the new inventory of the dealership to the file after a vehicle is added or removed
     public void saveDealership(Dealership dealership) throws IOException {
         FileWriter fileWriter = new FileWriter("inventory.csv");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
