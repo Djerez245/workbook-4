@@ -57,18 +57,12 @@ public class UserInterface {
             int userInput = scanner.nextInt();
             scanner.nextLine();
             switch (userInput) {
-                case 1: showSearchMenu();
-                    break;
-                case 2: printVehicleList(dealership.getAllVehicles());
-                    break;
-                case 3: addCar(scanner);
-                    break;
-                case 4: removeCar(scanner);
-                    break;
-                case 5:
-                    return;
-                default:
-                    System.out.println("\nSORRY WRONG INPUT TRY AGAIN!");
+                case 1 -> showSearchMenu();
+                case 2 -> printVehicleList(dealership.getAllVehicles());
+                case 3 -> addCar(scanner);
+                case 4 -> removeCar(scanner);
+                case 5 -> appRunning = false;
+                default -> System.out.println("\nSORRY WRONG INPUT TRY AGAIN!");
             }
         }
 
@@ -81,28 +75,19 @@ public class UserInterface {
             int userInput = scanner.nextInt();
             scanner.nextLine();
             switch (userInput) {
-                case 1: searchByMake(scanner);
-                    break;
-                case 2: searchByModel(scanner);
-                    break;
-                case 3: searchByColor(scanner);
-                    break;
-                case 4: searchByVin(scanner);
-                    break;
-                case 5: searchByVehicleType(scanner);
-                    break;
-                case 6: searchByMileage(scanner);
-                    break;
-                case 7: searchByPrice(scanner);
-                    break;
-                case 8: searchByYear(scanner);
-                    break;
-                case 0:
-                    inSearchMenu = false;
-                    break;
-                default:
+                case 1 -> searchByMake(scanner);
+                case 2 -> searchByModel(scanner);
+                case 3 -> searchByColor(scanner);
+                case 4 -> searchByVin(scanner);
+                case 5 -> searchByVehicleType(scanner);
+                case 6 -> searchByMileage(scanner);
+                case 7 -> searchByPrice(scanner);
+                case 8 -> searchByYear(scanner);
+                case 0 -> inSearchMenu = false;
+                default -> {
                     System.out.println("SORRY INVALID INPUT TRY AGAIN!");
                     return;
+                }
             }
         }
     }
