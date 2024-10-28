@@ -1,20 +1,15 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class Vehicle {
-    private int vin;
-    private int year;
-    private String make;
-    private String Model;
-    private String vehicleType;
-    private String color;
-    private int odometer;
-    private double price;
+    private final int vin;
+    private final int year;
+    private final String make;
+    private final String Model;
+    private final String vehicleType;
+    private final String color;
+    private final int odometer;
+    private final double price;
 
 
     public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
@@ -33,65 +28,39 @@ public class Vehicle {
         return vin;
     }
 
-    public void setVin(int vin) {
-        this.vin = vin;
-    }
-
     public int getYear() {
         return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     public String getMake() {
         return make;
     }
 
-    public void setMake(String make) {
-        this.make = make;
-    }
 
     public String getModel() {
         return Model;
     }
 
-    public void setModel(String model) {
-        Model = model;
-    }
 
     public String getVehicleType() {
         return vehicleType;
     }
 
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
-    }
 
     public String getColor() {
         return color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public int getOdometer() {
         return odometer;
     }
 
-    public void setOdometer(int odometer) {
-        this.odometer = odometer;
-    }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     public String toString(){
         return String.format("VIN: %-10d | Year: %-5d | Make: %-8s | Model: %-10s | Type: %-8s | Color: %-8s | Odometer: %-10d | Price: %.2f",

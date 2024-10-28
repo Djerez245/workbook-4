@@ -1,7 +1,6 @@
 package com.pluralsight;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class DealershipFileManager {
 
@@ -51,13 +50,7 @@ public class DealershipFileManager {
         }
     }
 
-    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-    public void writeVehicleFile(Vehicle v) throws IOException {
-        bufferedWriter.newLine();
-        bufferedWriter.write(v.toStringForVehicleFile());
-        bufferedWriter.close();
-    }
 
     public void saveDealership(Dealership dealership) throws IOException {
         FileReader fileReader = new FileReader("inventory.csv");

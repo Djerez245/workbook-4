@@ -1,7 +1,6 @@
 package com.pluralsight;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,6 +72,7 @@ public class UserInterface {
                     break;
 
                 case 5:
+
                     return;
 
                 default:
@@ -220,7 +220,6 @@ public class UserInterface {
     // method to remove car
     private void removeCar(Scanner scanner) throws IOException {
         DealershipFileManager fileManager = new DealershipFileManager();
-        ArrayList<Vehicle> newList = new ArrayList<Vehicle>();
         System.out.println("Enter the vin of the vehicle you would like to remove: ");
         int vin = scanner.nextInt();
         scanner.nextLine();
@@ -238,12 +237,6 @@ public class UserInterface {
         if (!vehicleFound) {
             System.out.println("VEHICLE NOT FOUND!");
         }
-        for (Vehicle v: dealership.getAllVehicles()){
-            if (v.getVin() != vin){
-                newList.add(v);
-            }
-        }
-
     }
 
 
