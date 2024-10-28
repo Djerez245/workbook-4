@@ -59,8 +59,19 @@ public class DealershipFileManager {
         bufferedWriter.close();
     }
 
-
-    public void saveDealership(Dealership dealership){}
+    public void saveDealership(Dealership dealership) throws IOException {
+        FileReader fileReader = new FileReader("inventory.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String header  = bufferedReader.readLine();
+        FileWriter fileWriter = new FileWriter("inventory.csv");
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(header);
+        bufferedWriter.newLine();
+        for (Vehicle v : dealership.getAllVehicles()) {
+            bufferedWriter.write(v.toStringForVehicleFile());
+        }
+        bufferedWriter.close();
+    }
 
 
 }

@@ -34,7 +34,6 @@ public class Dealership {
         dealershipInventory.remove(vehicle);
     }
 
-
     // method to make a feature to search by the make
     public ArrayList<Vehicle> getVehicleByMake(String make) {
         ArrayList<Vehicle> results = new ArrayList<Vehicle>();

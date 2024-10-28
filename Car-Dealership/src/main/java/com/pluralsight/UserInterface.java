@@ -49,7 +49,7 @@ public class UserInterface {
         dealership = fileManager.getDealerShip("inventory.csv");
     }
 
-    public void showMainMenu() {
+    public void showMainMenu() throws IOException {
         init();
 
         boolean appRunning = true;
@@ -62,7 +62,7 @@ public class UserInterface {
                     showSearchMenu();
                     break;
                 case 2:
-                    printVehicleList( dealership.getAllVehicles() );
+                    printVehicleList(dealership.getAllVehicles());
                     break;
                 case 3:
                     addCar(scanner);
@@ -125,8 +125,8 @@ public class UserInterface {
     }
 
     // method to print a list of vehicles
-    private void printVehicleList(List<Vehicle> vehicles){
-        for (Vehicle v:vehicles){
+    private void printVehicleList(List<Vehicle> vehicles) {
+        for (Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
@@ -208,36 +208,43 @@ public class UserInterface {
         dealership.addVehicle(vehicle);
         DealershipFileManager fileManager = new DealershipFileManager();
         try {
-            fileManager.writeVehicleFile(vehicle);
+            fileManager.saveDealership(dealership);
+            System.out.println("\nVEHICLE ADDED!");
         } catch (IOException e) {
+            System.out.println("sorry can not add vehicle!");
             throw new RuntimeException(e);
         }
 
     }
 
-    public void overWriteFile(){
+    // method to remove car
+    private void removeCar(Scanner scanner) throws IOException {
         DealershipFileManager fileManager = new DealershipFileManager();
         ArrayList<Vehicle> newList = new ArrayList<Vehicle>();
-        for (Vehicle v : dealership.getAllVehicles()){
-            dealership.addVehicle(v);
-
-        }
-    }
-
-    // method to remove car
-    private void removeCar(Scanner scanner) {
         System.out.println("Enter the vin of the vehicle you would like to remove: ");
         int vin = scanner.nextInt();
         scanner.nextLine();
-        for (Vehicle v: dealership.getAllVehicles()) {
-            if (v.getVin() == vin){
+
+        boolean vehicleFound = false;
+
+        for (Vehicle v : dealership.getAllVehicles()) {
+            if (v.getVin() == vin) {
+                vehicleFound = true;
                 dealership.removeVehicle(v);
-                overWriteFile();
-                System.out.println("VEHICLE REMOVED!");
+                fileManager.saveDealership(dealership);
+                System.out.println("\nVEHICLE REMOVED!");
             }
         }
-    }
+        if (!vehicleFound) {
+            System.out.println("VEHICLE NOT FOUND!");
+        }
+        for (Vehicle v: dealership.getAllVehicles()){
+            if (v.getVin() != vin){
+                newList.add(v);
+            }
+        }
 
+    }
 
 
 }
