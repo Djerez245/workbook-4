@@ -18,7 +18,7 @@ class DealershipTest {
 
         for (Vehicle v : vehicleInventory){
             if (v.getMake().equalsIgnoreCase("ford")){
-                System.out.println(v.toString());
+                System.out.println(v);
 
                 assertEquals("Ford", v.getMake());
             }

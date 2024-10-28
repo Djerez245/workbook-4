@@ -17,11 +17,7 @@ public class Dealership {
 
     // method to list all vehicles
     public ArrayList<Vehicle> getAllVehicles() {
-        ArrayList<Vehicle> results = new ArrayList<>();
-        for (Vehicle v : dealershipInventory) {
-            results.add(v);
-        }
-        return results;
+        return new ArrayList<>(dealershipInventory);
     }
 
     public void addVehicle(Vehicle vehicle) {
@@ -145,8 +141,8 @@ public class Dealership {
     }
 
 
-    public String toStringForFile() {
-        return String.format("%s | %s | %.2s", businessName, address, phoneNumber);
+    public String toStringForBusinessFile() {
+        return String.format("%s|%s|%.2s", businessName, address, phoneNumber);
     }
 
     private void inputMismatch(boolean inputMatches){

@@ -40,18 +40,6 @@ public class DealershipFileManager {
         return dealership;
     }
 
-    FileWriter fileWriter;
-
-    {
-        try {
-            fileWriter = new FileWriter("inventory.csv", true);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
     public void saveDealership(Dealership dealership) throws IOException {
         FileReader fileReader = new FileReader("inventory.csv");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
