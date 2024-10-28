@@ -21,16 +21,7 @@ public class DealershipFileManager {
             dealership = new Dealership(businessName, address, phoneNumber);
 
             while ((input = bufferedReader.readLine()) != null) {
-                String[] vPart = input.split("\\|");
-                int vin = Integer.parseInt(vPart[0]);
-                int year = Integer.parseInt(vPart[1]);
-                String make = vPart[2];
-                String model = vPart[3];
-                String vehicleType = vPart[4];
-                String color = vPart[5];
-                int odometer = Integer.parseInt(vPart[6]);
-                double price = Double.parseDouble(vPart[7]);
-                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                Vehicle vehicle = createVehicleFromString(input);
                 dealership.addVehicle(vehicle);
 
             }
@@ -38,6 +29,20 @@ public class DealershipFileManager {
             System.out.println("INVALID INPUT");
         }
         return dealership;
+    }
+
+    private static Vehicle createVehicleFromString(String input) {
+        String[] vPart = input.split("\\|");
+        int vin = Integer.parseInt(vPart[0]);
+        int year = Integer.parseInt(vPart[1]);
+        String make = vPart[2];
+        String model = vPart[3];
+        String vehicleType = vPart[4];
+        String color = vPart[5];
+        int odometer = Integer.parseInt(vPart[6]);
+        double price = Double.parseDouble(vPart[7]);
+        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+        return vehicle;
     }
 
     public void saveDealership(Dealership dealership) throws IOException {

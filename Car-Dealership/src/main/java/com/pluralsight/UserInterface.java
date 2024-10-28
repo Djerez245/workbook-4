@@ -135,13 +135,13 @@ public class UserInterface {
         System.out.println("\nEnter Maximum mileage: \n");
         int miles = scanner.nextInt();
         scanner.nextLine();
-        printVehicleList(dealership.getVehicleMileage(miles));
+        printVehicleList(dealership.getVehiclesByMileage(miles));
     }
 
     public void searchByPrice(Scanner scanner) {
         System.out.println("\nEnter Maximum price: \n");
         double price = scanner.nextDouble();
-        printVehicleList(dealership.getVehiclePrice(price));
+        printVehicleList(dealership.getVehiclesByPrice(price));
     }
 
     public void searchByYear(Scanner scanner) {

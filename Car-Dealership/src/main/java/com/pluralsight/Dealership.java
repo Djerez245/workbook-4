@@ -99,7 +99,7 @@ public class Dealership {
     }
 
     //method to search by price
-    public ArrayList<Vehicle> getVehiclePrice(double price) {
+    public ArrayList<Vehicle> getVehiclesByPrice(double price) {
         ArrayList<Vehicle> results = new ArrayList<>();
         boolean inputMatches = false;
         for (Vehicle v : dealershipInventory) {
@@ -113,7 +113,7 @@ public class Dealership {
     }
 
     // method to search by mileage
-    public ArrayList<Vehicle> getVehicleMileage(int miles) {
+    public ArrayList<Vehicle> getVehiclesByMileage(int miles) {
         ArrayList<Vehicle> results = new ArrayList<>();
         boolean inputMatches = false;
         for (Vehicle v : dealershipInventory) {
