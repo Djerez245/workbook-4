@@ -5,17 +5,15 @@ public class SalesContract extends Contract {
     private double recordingFee;
     private double processingFee;
     private String ifWantToFinance;
-    private double paymentIfFinanced;
 
-    public SalesContract(String dateOfContract, String customerName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment,
-                         double salesTaxAmount, double recordingFee, double processingFee, String ifWantToFinance, double paymentIfFinanced) {
+    public SalesContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment,
+                         double salesTaxAmount, double recordingFee, double processingFee, String ifWantToFinance) {
 
         super(dateOfContract, customerName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
         this.salesTaxAmount = salesTaxAmount;
         this.recordingFee = recordingFee;
         this.processingFee = processingFee;
         this.ifWantToFinance = ifWantToFinance;
-        this.paymentIfFinanced = paymentIfFinanced;
     }
 
     public double getSalesTaxAmount() {
@@ -50,12 +48,19 @@ public class SalesContract extends Contract {
         this.ifWantToFinance = ifWantToFinance;
     }
 
-    public double getPaymentIfFinanced() {
-        return paymentIfFinanced;
+    public String toString(){
+       return String.format("%s|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%f|%f|%f|%f|%f|%s|%f");
     }
 
-    public void setPaymentIfFinanced(double paymentIfFinanced) {
-        this.paymentIfFinanced = paymentIfFinanced;
+    @Override
+    public void getTotalPrice() {
     }
 
+    @Override
+    public void getMonthlyPayment() {
+        if(totalPrice >= 10000){
+
+
+        }
+    }
 }

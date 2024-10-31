@@ -1,13 +1,11 @@
 package com.pluralsight;
 
-import java.time.LocalDate;
-
 public class LeaseContract extends Contract{
 double expectedEndingValue;
 double leaseFee;
 double monthlyPayment;
 
-    public LeaseContract(String dateOfContract, String customerName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment,
+    public LeaseContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment,
                          double expectedEndingValue, double leaseFee, double monthlyPayment1) {
 
         super(dateOfContract, customerName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
@@ -32,11 +30,17 @@ double monthlyPayment;
         this.leaseFee = leaseFee;
     }
 
-    public double getMonthlyPayment() {
-        return monthlyPayment;
+    public String toString(){
+        return String.format("%s|%d|%s|%s|%d|%d|%s|%s|%s|%s|%d|%f|%f|%f|%f|%f");
     }
 
-    public void setMonthlyPayment(double monthlyPayment) {
-        this.monthlyPayment = monthlyPayment;
+    @Override
+    public void getTotalPrice() {
+
+    }
+
+    @Override
+    public void getMonthlyPayment() {
+
     }
 }
