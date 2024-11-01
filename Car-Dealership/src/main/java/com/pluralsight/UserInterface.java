@@ -15,6 +15,7 @@ public class UserInterface {
                   =======================================
                        WELCOME TO D & B USED CARS
                   =======================================
+                  (0) TO BUY A NEW CAR
                   (1) FIND A VEHICLE
                   (2) LIST ALL VEHICLES
                   (3) ADD A VEHICLE
@@ -57,6 +58,7 @@ public class UserInterface {
             int userInput = scanner.nextInt();
             scanner.nextLine();
             switch (userInput) {
+                case 0 -> buyCar();
                 case 1 -> showSearchMenu();
                 case 2 -> printVehicleList(dealership.getAllVehicles());
                 case 3 -> addCar(scanner);
@@ -208,6 +210,31 @@ public class UserInterface {
         }
     }
 
+    private void buyCar() throws IOException {
+        Contract c = null;
+        ContractDataManager dataManager = new ContractDataManager();
+        System.out.println("WOULD LIKE TO BUY OR LEASE A VEHICLE: ");
+        String leaseOrBuy = scanner.nextLine();
+        System.out.println("PLEASE ENTER TODAY'S DATE (YYYYMMDD): ");
+        String date = scanner.nextLine();
+        System.out.println("PLEASE ENTER YOUR NAME: ");
+        String buyerName = scanner.nextLine();
+        System.out.println("PLEASE ENTER YOUR EMAIL: ");
+        String buyerEmail = scanner.nextLine();
+        System.out.println("ENTER THE VIN OF THE VEHICLE WOULD YOU LIKE TO PURCHASE: ");
+        int purchasedCar = scanner.nextInt();
+        scanner.nextLine();
+        if (leaseOrBuy.equalsIgnoreCase("buy")) {
+            System.out.println("WOULD YOU LIKE TO FINANCE THE VEHICLE?");
+            System.out.println("PLEASE ENTER 'YES' OR 'NO': ");
+            String yesOrNo = scanner.nextLine();
+            c = new SalesContract(date, buyerName, buyerEmail, dealership.getVehicleByVin(purchasedCar).get(0), yesOrNo);
+        } else if (leaseOrBuy.equalsIgnoreCase("lease")) {
+            c = new LeaseContract(date, buyerName, buyerEmail, dealership.getVehicleByVin(purchasedCar).get(0));
+        }
+        dataManager.saveContract(c);
+        removeCar(scanner);
+    }
 
 }
 

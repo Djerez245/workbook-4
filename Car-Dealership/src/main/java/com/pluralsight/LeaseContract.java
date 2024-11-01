@@ -1,20 +1,21 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
+
 public class LeaseContract extends Contract{
 double expectedEndingValue;
 double leaseFee;
-double monthlyPayment;
 
-    public LeaseContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment,
-                         double expectedEndingValue, double leaseFee, double monthlyPayment1) {
+    public LeaseContract(String dateOfContract, String customerName, String customerEmail, Vehicle vehicleSold) {
 
-        super(dateOfContract, customerName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
+        super(dateOfContract, customerName, customerEmail, vehicleSold);
         this.expectedEndingValue = expectedEndingValue;
         this.leaseFee = leaseFee;
-        this.monthlyPayment = monthlyPayment1;
     }
 
+
     public double getExpectedEndingValue() {
+        expectedEndingValue = vehicleSold.getPrice() / 2;
         return expectedEndingValue;
     }
 
@@ -23,6 +24,7 @@ double monthlyPayment;
     }
 
     public double getLeaseFee() {
+        leaseFee = vehicleSold.getPrice() + (vehicleSold.getPrice() * .07);
         return leaseFee;
     }
 
@@ -31,16 +33,18 @@ double monthlyPayment;
     }
 
     public String toString(){
-        return String.format("%s|%d|%s|%s|%d|%d|%s|%s|%s|%s|%d|%f|%f|%f|%f|%f");
+        return String.format("LEASE|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%.2f|%.2f|%.2f|%.2f|%.2f\n", dateOfContract, customerName, customerEmail, vehicleSold.getVin(),
+                vehicleSold.getYear(), vehicleSold.getMake(), vehicleSold.getModel(), vehicleSold.getVehicleType(), vehicleSold.getColor(),
+                vehicleSold.getOdometer(), vehicleSold.getPrice(), getExpectedEndingValue(), getLeaseFee(), totalPrice, monthlyPayment);
     }
 
     @Override
-    public void getTotalPrice() {
-
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
     @Override
-    public void getMonthlyPayment() {
-
+    public double getMonthlyPayment() {
+        return monthlyPayment;
     }
 }
