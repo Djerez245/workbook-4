@@ -35,16 +35,18 @@ double leaseFee;
     public String toString(){
         return String.format("LEASE|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%.2f|%.2f|%.2f|%.2f|%.2f\n", dateOfContract, customerName, customerEmail, vehicleSold.getVin(),
                 vehicleSold.getYear(), vehicleSold.getMake(), vehicleSold.getModel(), vehicleSold.getVehicleType(), vehicleSold.getColor(),
-                vehicleSold.getOdometer(), vehicleSold.getPrice(), getExpectedEndingValue(), getLeaseFee(), totalPrice, monthlyPayment);
+                vehicleSold.getOdometer(), vehicleSold.getPrice(), getExpectedEndingValue(), getLeaseFee(), getTotalPrice(), getMonthlyPayment());
     }
 
     @Override
     public double getTotalPrice() {
+        totalPrice = (vehicleSold.getPrice() * .04) * 36;
         return totalPrice;
     }
 
     @Override
     public double getMonthlyPayment() {
+        monthlyPayment = totalPrice / 36;
         return monthlyPayment;
     }
 }

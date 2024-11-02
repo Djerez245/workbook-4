@@ -12,35 +12,33 @@ public class UserInterface {
     private static void displayMenu() {
         System.out.println("""
                 
-                  =======================================
-                       WELCOME TO D & B USED CARS
-                  =======================================
-                  (0) TO BUY A NEW CAR
-                  (1) FIND A VEHICLE
-                  (2) LIST ALL VEHICLES
-                  (3) ADD A VEHICLE
-                  (4) REMOVE A VEHICLE
-                  (5) EXIT DEALERSHIP
-                
+                                                                                                   =======================================
+                                                                                                        WELCOME TO D & B USED CARS
+                                                                                                   =======================================
+                                                                                                   (0)     TO BUY/LEASE A NEW CAR
+                                                                                                   (1)        FIND A VEHICLE
+                                                                                                   (2)      LIST ALL VEHICLES
+                                                                                                   (3)        ADD A VEHICLE
+                                                                                                   (4)       REMOVE A VEHICLE
+                                                                                                   (5)       EXIT DEALERSHIP
                 """);
     }
 
     private static void displaySearchMenu() {
         System.out.println("""
                 
-                  =======================================
-                            SEARCH FOR A VEHICLE
-                  =======================================
-                  (1) SEARCH BY MAKE
-                  (2) SEARCH BY MODEL
-                  (3) SEARCH BY COLOR
-                  (4) SEARCH BY VIN
-                  (5) SEARCH BY VEHICLE TYPE
-                  (6) SEARCH BY MILEAGE
-                  (7) SEARCH BY PRICE
-                  (8) SEARCH BY YEAR
-                  (0) EXIT
-                
+                                                                                                   =======================================
+                                                                                                             SEARCH FOR A VEHICLE
+                                                                                                   =======================================
+                                                                                                   (1)        SEARCH BY MAKE
+                                                                                                   (2)        SEARCH BY MODEL
+                                                                                                   (3)        SEARCH BY COLOR
+                                                                                                   (4)         SEARCH BY VIN
+                                                                                                   (5)     SEARCH BY VEHICLE TYPE
+                                                                                                   (6)       SEARCH BY MILEAGE
+                                                                                                   (7)        SEARCH BY PRICE
+                                                                                                   (8)        SEARCH BY YEAR
+                                                                                                   (0)              EXIT
                 """);
     }
 
@@ -58,7 +56,7 @@ public class UserInterface {
             int userInput = scanner.nextInt();
             scanner.nextLine();
             switch (userInput) {
-                case 0 -> buyCar();
+                case 0 -> buyOrLeaseCar();
                 case 1 -> showSearchMenu();
                 case 2 -> printVehicleList(dealership.getAllVehicles());
                 case 3 -> addCar(scanner);
@@ -196,7 +194,6 @@ public class UserInterface {
         scanner.nextLine();
 
         boolean vehicleFound = false;
-
         for (Vehicle v : dealership.getAllVehicles()) {
             if (v.getVin() == vin) {
                 vehicleFound = true;
@@ -210,7 +207,8 @@ public class UserInterface {
         }
     }
 
-    private void buyCar() throws IOException {
+    private void buyOrLeaseCar() throws IOException {
+        DealershipFileManager fileManager = new DealershipFileManager();
         Contract c = null;
         ContractDataManager dataManager = new ContractDataManager();
         System.out.println("WOULD LIKE TO BUY OR LEASE A VEHICLE: ");
@@ -233,7 +231,12 @@ public class UserInterface {
             c = new LeaseContract(date, buyerName, buyerEmail, dealership.getVehicleByVin(purchasedCar).get(0));
         }
         dataManager.saveContract(c);
-        removeCar(scanner);
+        for (Vehicle v : dealership.getAllVehicles()){
+            if(v.getVin() == purchasedCar){
+                dealership.removeVehicle(v);
+                fileManager.saveDealership(dealership);
+            }
+        }
     }
 
 }
