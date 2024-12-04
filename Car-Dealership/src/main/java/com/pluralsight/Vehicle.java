@@ -5,7 +5,7 @@ public class Vehicle {
     private final int vin;
     private final int year;
     private final String make;
-    private final String Model;
+    private final String model;
     private final String vehicleType;
     private final String color;
     private final int odometer;
@@ -16,7 +16,7 @@ public class Vehicle {
         this.vin = vin;
         this.year = year;
         this.make = make;
-        Model = model;
+        this.model = model;
         this.vehicleType = vehicleType;
         this.color = color;
         this.odometer = odometer;
@@ -38,7 +38,7 @@ public class Vehicle {
 
 
     public String getModel() {
-        return Model;
+        return model;
     }
 
 
@@ -64,12 +64,12 @@ public class Vehicle {
 
     public String toString(){
         return String.format("VIN: %-10d | Year: %-5d | Make: %-8s | Model: %-10s | Type: %-8s | Color: %-8s | Odometer: %-10d | Price: %.2f",
-                vin, year, make, Model, vehicleType, color, odometer, price);
+                vin, year, make, model, vehicleType, color, odometer, price);
     }
 
     public String toStringForVehicleFile(){
         return String.format("%d|%d|%s|%s|%s|%s|%d|%.2f\n",
-                vin, year, make, Model, vehicleType, color, odometer, price);
+                vin, year, make, model, vehicleType, color, odometer, price);
     }
 
 
