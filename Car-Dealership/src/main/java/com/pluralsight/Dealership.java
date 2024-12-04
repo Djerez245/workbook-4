@@ -3,12 +3,14 @@ package com.pluralsight;
 import java.util.ArrayList;
 
 public class Dealership {
+    private final int id;
     private final String businessName;
     private final String address;
     private final String phoneNumber;
     private final ArrayList<Vehicle> dealershipInventory;
 
-    public Dealership(String businessName, String address, String phoneNumber) {
+    public Dealership(int id, String businessName, String address, String phoneNumber) {
+        this.id = id;
         this.businessName = businessName;
         this.address = address;
         this.phoneNumber = phoneNumber;
